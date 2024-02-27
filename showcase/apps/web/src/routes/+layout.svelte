@@ -3,17 +3,32 @@
 <div class="navbar">
   <a class="title" href="/">KSM Parking</a>
   <div class="navbtns">
-      <a href="/map" class="options">Options</a>
-      <a href="/user" class="user">Current User</a>
+      <a href="/stats" class="options">Stats</a>
+      <a href="/settings" class="settings">Current User</a>
   </div>
+</div>
+<div class="navbarborder">
+
 </div>
 
 <style>
+
+.navbarborder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 2.5em;
+  z-index:999 ;
+}
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #3d3c52;
+  background-color: #0d2655;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -22,14 +37,14 @@
 }
 
 .title{
-  color: rgb(153, 181, 197);
+  color: #ffffff;
   font-size: 2em;
   font-family: 'Georgia';
   text-decoration: none;
 }
 
 .title:hover {
-  color: aquamarine;
+  color: rgb(228, 217, 159);
 }
 
 .navbtns {

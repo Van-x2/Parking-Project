@@ -26,6 +26,6 @@
   "dependencies": {
     "daisyui": "^4.7.2",
     "leaflet": "^1.9.4",
-    "pocketbase": "^0.20.0-rc3"
+    "pocketbase": "^0.20.3"
   }
 }
