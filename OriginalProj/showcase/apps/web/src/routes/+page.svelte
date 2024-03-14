@@ -49,6 +49,7 @@
 
 
   </head>
+  <button on:click="{requestData()}"></button>
   
 
   <body>
