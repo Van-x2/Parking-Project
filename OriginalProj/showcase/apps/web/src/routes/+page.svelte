@@ -1,17 +1,17 @@
 
-<!DOCTYPE svelte>
+<!DOCTYPE html>
 <html lang="en">
 
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <title>KSM Parking</title>
-    
-    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script src="https://cdn.jsdelivr.net/gh/pocketbase/js-sdk@latest/dist/pocketbase.umd.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/pocketbase/js-sdk@latest/dist/pocketbase.umd.js"></script>
+
     <style>
       html, body {
         height: 100%;
@@ -49,7 +49,6 @@
 
 
   </head>
-  <button on:click="{requestData()}"></button>
   
 
   <body>
