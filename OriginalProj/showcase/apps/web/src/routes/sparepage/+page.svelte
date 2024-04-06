@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <script>
   import PocketBase from 'pocketbase'
 	let name = 'world';

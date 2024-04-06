@@ -22,38 +22,50 @@
         width: 600px;
         max-width: 100%;
         max-height: 100%;
+        padding: 0em;
+      }
+      .leaflet-popup-content {
+        color: #182754;
+        font-size: 7mm;
+        font-family: Georgia, serif;
       }
     </style>
 
-<script>
-  //Request data from pocketbase
-  async function requestData() {
-      const pocketBaseUrl = "https://parkingproject.pockethost.io/api/collections/parkingarray/records";
-      const pb = new PocketBase('https://parkingproject.pockethost.io');
-  
-      try {
-        const authData = await pb.admins.authWithPassword('vannsiphers.lego@gmail.com', 'Vtech808!');
-        const response = await fetch(pocketBaseUrl);
-  
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-  
-        data = await response.json();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        data = { error: "Error fetching data. Please check the console for details." };
-      }
-    }
-</script>
 
 
   </head>
+
+
+  <script>
+    //Request data from pocketbase
+    async function requestData() {
+        const pocketBaseUrl = "https://parkingproject.pockethost.io/api/collections/parkingarray/records";
+        const pb = new PocketBase('https://parkingproject.pockethost.io');
+    
+        try {
+          const authData = await pb.admins.authWithPassword('vannsiphers.lego@gmail.com', 'Vtech808!');
+          const response = await fetch(pocketBaseUrl);
+    
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+    
+          data = await response.json();
+        } catch (error) {
+          console.error('Error fetching data:', error);
+          data = { error: "Error fetching data. Please check the console for details." };
+        }
+      }
+      return requestData();
+  </script>
+
+  <!-- svelte-ignore missing-declaration -->
+  <button on:click={requestData()}>requestData</button>
+
   
 
-  <body>
-  <div id="map" style="width: 100%; height: 100%;"></div>
 
+  <div id="map" style="width: 100%; height: 100%;"></div> 
 
   <script>
     //Defines a few helpfull variables
@@ -159,6 +171,6 @@
 
 
 
-  </body>
+
 
 </html>
