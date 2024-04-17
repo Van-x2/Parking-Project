@@ -2,6 +2,8 @@ import { error, redirect } from '@sveltejs/kit';
 
 export const actions = {
   update: async ({ request, locals }) => {
+
+    
     try {
       let data = await request.formData();
 

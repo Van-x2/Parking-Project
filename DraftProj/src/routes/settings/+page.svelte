@@ -11,6 +11,7 @@ export let data;
         <br>
     </div>
 
+    {#if data.profile}
     <div class="m-4 p-2 border-[5px] border-secondary rounded-lg class= font-serif">
         <form method="POST" action="?/update">
 
@@ -44,5 +45,13 @@ export let data;
               </div>
             
             </form>
+        
     </div>
+    {:else}
+    <h1 class="text-secondary text-[20px] m-[3%]">
+        To view user settings, please sign in
+    </h1>
+
+
+    {/if}
 </div>

@@ -65,7 +65,7 @@
   
 
 
-  <div id="map" style="width: 100%; height: 100%;"></div> 
+  <div id="map" style="width: 100%; height: 100%;"></div>
 
   <script>
     //Defines a few helpfull variables
@@ -75,10 +75,7 @@
     let imageBounds = [[-700, -200], [120, 88]];
     let zoomBounds = [[100,75], [-65,-200]];
 
-    //test function
-    function handleClick(num) {
-      count = count + num;
-    }
+
 
     //Creates map data
     const map = L.map('map').setView(initialView, 3);
