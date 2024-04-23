@@ -1,10 +1,35 @@
 <script>
-
+    import PocketBase from 'pocketbase';
+    import { error, redirect } from '@sveltejs/kit';
     export let data;
     export let localStatus;
     export let localId;
     export let localEmail;
-    let vehicleImg
+    export let localCol;
+    export let localRow;
+    let vehicleImg;
+    let sendData;
+    let sendStatus;
+
+    async function testDataFun(){
+      const requestData = {
+            localId: localId,
+            localCol: localCol,
+            localRow: localRow,
+            localEmail: data.profile.email,
+            localVehicle: data.profile.vehicle,
+            localUserData: data.profile
+        };
+      
+        const response = await fetch('http://localhost:3000/update-parking-spot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+    })
+    location.reload();
+    }
 
     if (localStatus == 1) {
       vehicleImg = "https://i.ibb.co/XF8cSD4/Vacant2.png"
@@ -38,6 +63,8 @@ function toClipboard(str) {
   navigator.clipboard.writeText(str);
   alert("Copied occupant's Email address to clipboard")
   }
+
+
   </script>
 
 
@@ -58,7 +85,7 @@ function toClipboard(str) {
         <span class="mt-1">
           This spot is vacant
         </span>
-        <button class=" bg-secondary text-white p-2 px-4 border-white border-4 rounded-lg align-bottom mt-[70px] translate-x-[0] translate-y-[-20px] transition hover:border-yellow-200 active:bg-blue-900">
+        <button on:click={testDataFun} class=" bg-secondary text-white p-2 px-4 border-white border-4 rounded-lg align-bottom mt-[70px] translate-x-[0] translate-y-[-20px] transition hover:border-yellow-200 active:bg-blue-900">
            Claim this spot
            <br>
            <span class="italic opacity-40">you can only claim one!</span>

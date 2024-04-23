@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "leaflet": "^1.9.4",
-    "pocketbase": "^0.21.1"
-  }
-}

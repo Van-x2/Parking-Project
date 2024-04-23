@@ -91,7 +91,9 @@
                           data: data,
                           localStatus: (eval(currentparkingRequest + ".status")),
                           localId: (eval(currentparkingRequest + ".id")),
-                          localEmail: (eval(currentparkingRequest + ".email"))
+                          localEmail: (eval(currentparkingRequest + ".email")),
+                          localCol: (eval(currentparkingRequest + ".column")),
+                          localRow: (eval(currentparkingRequest + ".row"))
                       }
                   });
 
@@ -99,9 +101,12 @@
                   currentMarker.bindPopup(
                     popupContent
                   );
-                  if ((eval(currentparkingRequest + ".id")) == "000000000000B03") {
+                  //autoOpen Popup for development
+                  /*
+                  if ((eval(currentparkingRequest + ".id")) == "000000000000B06") {
                     currentMarker.openPopup()
                   }
+                  */
 
 
                   //Sets the Icon of the current marker
