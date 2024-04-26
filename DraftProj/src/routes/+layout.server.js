@@ -5,9 +5,11 @@ let fullParkData = {};
 
 
 export const load = async ({ locals }) => {
+    const pb = new PocketBase('https://parkingproject.pockethost.io');
+    
+    
 
     try {
-        const pb = new PocketBase('https://parkingproject.pockethost.io');
         fullParkData = await pb.collection('parkingarray').getList( 1, 255, {sort: 'id'});
 
         parkData.a = fullParkData.items.slice(0, 20);
@@ -31,8 +33,10 @@ export const load = async ({ locals }) => {
 
 
     if (locals.user) {
+        const record = await pb.collection('users').getOne(locals.user.id);
+        record.email = locals.user.email
         return {
-            profile: locals.user,
+            profile: record,
             parking: parkData
         };
     }

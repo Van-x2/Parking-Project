@@ -10,7 +10,7 @@
 
         <div>
             <h1 class="font-bold font-serif text-secondary text-5xl m-6">
-                Hey, <span class="text-[30px]">stranger</span>
+                Hey, <span class="text-[30px]">user</span>
             </h1>
         </div>
 
@@ -36,6 +36,7 @@
                 </h1>
             
             <div class="mb-4 ml-2 w-[70%]">
+                <span class=" text-gray-400 italic m-2"> If you have an acount already:</span>
                 <a href="/login">
                     <button type="submit" class=" bg-secondary font-serif font-bold border-2 border-white rounded-lg p-2 px-5 text-white transition ease-in-out active:bg-slate-600 active:text-yellow-200" >
                         Sign in
@@ -44,6 +45,7 @@
             </div>
 
             <div class="mb-4 ml-2 w-[70%]">
+                <span class=" text-gray-400 italic m-2"> If you need to make an acount:</span>
                 <a href="/register">
                     <button class=" bg-secondary font-serif font-bold border-2 border-white rounded-lg p-2 px-5 text-white transition ease-in-out active:bg-slate-600 active:text-yellow-200" >
                         Sign up
@@ -62,20 +64,14 @@
                     User Actions
                 </h1>
             
-            <div class="mb-4 ml-2 w-[70%]">
-                <form method="POST" action="/logout">
-                    <button type="submit" class=" bg-secondary font-serif font-bold border-2 border-white rounded-lg p-2 px-5 text-white transition ease-in-out active:bg-slate-600 active:text-yellow-200" >
-                        Sign Out
-                    </button>
-                </form>
-            </div>
-
-            <div class="mb-4 ml-2 w-[70%]">
-                <button class=" bg-secondary font-serif font-bold border-2 border-white rounded-lg p-2 px-5 text-white transition ease-in-out active:bg-slate-600 active:text-yellow-200" >
-                    Blank
-                </button>
-            </div>
-
+                <div class="mb-4 ml-2 w-[70%]">
+                    
+                    <form method="POST" action="/logout">
+                        <button type="submit" class=" bg-secondary font-serif font-bold border-2 border-white rounded-lg p-2 px-5 text-white transition ease-in-out active:bg-slate-600 active:text-yellow-200" >
+                            Sign Out
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
 

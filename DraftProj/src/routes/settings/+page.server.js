@@ -6,7 +6,7 @@ export const actions = {
     
     try {
       let data = await request.formData();
-
+      
       await locals.pb.collection('users').update(locals?.user?.id, data);
 
     } catch (err) {

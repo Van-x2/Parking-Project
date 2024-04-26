@@ -3,12 +3,13 @@ export let data;
 </script>
 
 <slot />
-<div>
+<div class>
     <div class=" m-0 h-[100px] w-screen bg-white z-8 flex items-center">
+        <div class=" scale-90%">
         <h1 class="font-bold font-serif text-secondary text-5xl m-6">
             Settings
         </h1>
-        <br>
+        </div>
     </div>
 
     {#if data.profile}
@@ -40,7 +41,7 @@ export let data;
                 <!-- Submit changes btn -->
               <div class="mb-4 ml-2 w-[70%]">
                 <button class="w-[50%] block rounded-lg py-[9px] px-3 pr-4 text-sm border-2 border-secondary transition hover:bg-slate-200 active:scale-80" type="submit">
-                    <p class="translate-x-[-40px]">Save Changes</p>
+                    <p class="">Save Changes</p>
                 </button>
               </div>
             

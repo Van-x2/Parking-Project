@@ -11,7 +11,8 @@
     let sendData;
     let sendStatus;
 
-    async function testDataFun(){
+
+    async function backendDataPOST(){
       const requestData = {
             localId: localId,
             localCol: localCol,
@@ -21,7 +22,7 @@
             localUserData: data.profile
         };
       
-        const response = await fetch('http://localhost:3000/update-parking-spot', {
+        const response = await fetch('https://parkingprojectbackend.fly.dev/update-parking-spot', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -32,17 +33,13 @@
     }
 
     if (localStatus == 1) {
-      vehicleImg = "https://i.ibb.co/XF8cSD4/Vacant2.png"
-    }
+      vehicleImg = "https://i.ibb.co/XF8cSD4/Vacant2.png"}
     if (localStatus == 2) {
-      vehicleImg = "https://i.ibb.co/QY9p8KX/Possibly-Vacant.png"
-    }
+      vehicleImg = "https://i.ibb.co/QY9p8KX/Possibly-Vacant.png"}
     if (localStatus == 3) {
-      vehicleImg = "https://i.ibb.co/Cm1bSs5/CarUp.png"
-    }
+      vehicleImg = "https://i.ibb.co/Cm1bSs5/CarUp.png"}
     if (localStatus == 4) {
-      vehicleImg = "https://i.ibb.co/pL1WBBV/Truckup.png"
-    }
+      vehicleImg = "https://i.ibb.co/pL1WBBV/Truckup.png"}
 
     function simplifyID(id) {
     // Remove leading zeros
@@ -62,7 +59,7 @@
 function toClipboard(str) {
   navigator.clipboard.writeText(str);
   alert("Copied occupant's Email address to clipboard")
-  }
+}
 
 
   </script>
@@ -70,7 +67,7 @@ function toClipboard(str) {
 
 
 
-
+  {#if !data.profile}
 
   {#if localStatus == 1}
 
@@ -85,14 +82,18 @@ function toClipboard(str) {
         <span class="mt-1">
           This spot is vacant
         </span>
-        <button on:click={testDataFun} class=" bg-secondary text-white p-2 px-4 border-white border-4 rounded-lg align-bottom mt-[70px] translate-x-[0] translate-y-[-20px] transition hover:border-yellow-200 active:bg-blue-900">
-           Claim this spot
-           <br>
-           <span class="italic opacity-40">you can only claim one!</span>
-        </button>
+
+          <button class=" bg-secondary text-white p-2 px-4 border-white border-4 rounded-lg align-bottom mt-[70px] translate-x-[0] translate-y-[-20px] transition hover:border-yellow-200 active:bg-blue-900">
+            Cant claim spot
+            <br>
+            <span class="italic opacity-40">Login to claim spots!</span>
+          </button>
+
+
       </div>
     </div>
   </div>
+
 
   {:else}
 
@@ -114,6 +115,80 @@ function toClipboard(str) {
       </div>
     </div>
   </div>
+  {/if}
+
+  {:else}
+
+  {#if localStatus == 1}
+
+  {#if data.profile.owningSpot == false}
+
+  <div class="  w-[308px] h-[200px] border-4 rounded-lg border-secondary text-center text-gray-300 p-2 flex">
+    <div class=" left-0  w-[28%] h-[98%] translate-y-0 translate-x-0">
+      <span class=" text-3xl font-serif font-bold">{(simplifyID(localId))}</span>
+      <img src="{vehicleImg}" alt="The current occupation of the space" class="w-[90%] h-[80%] translate-x-[3px]"/>
+    </div>
+
+    <div class=" bg-primary right-0  w-[65%] h-[98%] translate-y-1 translate-x-4 rounded-lg text-secondary">
+      <div class="p-3 text-left">
+        <span class="mt-1">
+          This spot is vacant
+        </span>
+
+          <button on:click={backendDataPOST} class=" bg-secondary text-white p-2 px-4 border-white border-4 rounded-lg align-bottom mt-[70px] translate-x-[0] translate-y-[-20px] transition hover:border-yellow-200 active:bg-blue-900">
+            Claim this spot
+            <br>
+            <span class="italic opacity-40">you can only claim one!</span>
+          </button>
+
+
+      </div>
+    </div>
+  </div>
+
+  {:else}
+
+  <div class="  w-[308px] h-[200px] border-4 rounded-lg border-secondary text-center text-gray-300 p-2 flex">
+    <div class=" left-0  w-[28%] h-[98%] translate-y-0 translate-x-0">
+      <span class=" text-3xl font-serif font-bold">{(simplifyID(localId))}</span>
+      <img src="{vehicleImg}" alt="The current occupation of the space" class="w-[90%] h-[80%] translate-x-[3px]"/>
+    </div>
+
+    <div class=" bg-primary right-0  w-[65%] h-[98%] translate-y-1 translate-x-4 rounded-lg text-secondary">
+      <div class="p-3 text-left">
+        <span class="mt-1">
+          This spot is vacant
+        </span>
+        <button class=" bg-secondary text-white p-2 px-4 border-white border-4 rounded-lg align-bottom mt-[70px] translate-x-[0] translate-y-[-20px] transition hover:border-yellow-200 active:bg-blue-900">
+         <span class="italic opacity-40">You already claimed a spot!</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {/if}
+
+  {:else}
+
+  <div class="  w-[308px] h-[200px] border-4 rounded-lg border-secondary text-center text-secondary p-2 flex">
+    <div class=" left-0  w-[28%] h-[98%] translate-y-0 translate-x-0">
+      <span class=" text-3xl font-serif font-bold">{(simplifyID(localId))}</span>
+      <img src="{vehicleImg}" alt="The current occupation of the space" class="w-[90%] h-[80%] translate-x-[3px]"/>
+    </div>
+
+    <div class=" bg-primary right-0  w-[65%] h-[98%] translate-y-1 translate-x-4 rounded-lg text-secondary">
+      <div class="p-3 text-left">
+        <span class="mt-1">
+          This spot is occupied by:
+        </span>
+        <span class="text-[11px]">
+          {localEmail}
+        </span>
+        <button on:click={toClipboard(localEmail)} class=" bg-secondary text-white p-2 px-4 border-white border-4 rounded-lg align-bottom mt-[70px] translate-x-1 transition hover:border-yellow-200 active:bg-blue-900"> Contact Occupant </button>
+      </div>
+    </div>
+  </div>
+  {/if}
 
   {/if}
 

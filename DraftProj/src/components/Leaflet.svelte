@@ -25,7 +25,7 @@
                 popupAnchor: [-3, -76]
               });
               var truckIconDown = L.icon({
-                iconUrl: 'https://i.ibb.co/P5qN64B/CarDown.png',
+                iconUrl: 'https://i.ibb.co/xq4K2C0/Truckdown.png',
                 iconSize: [21, 48],
                 iconAnchor: [13, 40],
                 popupAnchor: [-3, -76]

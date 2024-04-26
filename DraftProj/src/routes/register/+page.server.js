@@ -4,6 +4,8 @@ import { generateUsername } from '../../lib/utils';
 export const actions = {
 	register: async ({ locals, request }) => {
 		const body = Object.fromEntries(await request.formData());
+		body.email = (body.email.toLowerCase())
+		body.vehicle = 'car'
 
 		let username = generateUsername(body.name.split(' ').join('')).toLowerCase();
 

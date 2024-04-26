@@ -17,5 +17,8 @@
     "node-cron": "^3.0.3",
     "nodemon": "^3.1.0",
     "pocketbase": "^0.21.2"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.5"
   }
 }

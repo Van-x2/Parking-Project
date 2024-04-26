@@ -24,8 +24,8 @@ import('pocketbase').then(({ default: PocketBase }) => {
         // Extract data from request body
         const { localId, localCol, localRow, localEmail, localVehicle, localUserData } = req.body;
         const currentTime = new Date().getTime(); // Current time in milliseconds
-        //const delayInMs = 24 * 60 * 60 * 1000; // 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
-        const delayInMs = 20 * 1000
+        const delayInMs = 24 * 60 * 60 * 1000; // 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
+        //const delayInMs = 60 * 1000
         const targetTime = currentTime + delayInMs; // Target time after 24 hours
         const delayUntilTarget = targetTime - currentTime;
 
@@ -117,4 +117,4 @@ import('pocketbase').then(({ default: PocketBase }) => {
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`app listening on http://localhost:${port}`) );
+app.listen(port, () => console.log(`App setup for${port}`) );

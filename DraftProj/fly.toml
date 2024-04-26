@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for ksparking on 2024-04-23T06:25:32Z
+# fly.toml app configuration file generated for ksmparking on 2024-04-24T00:33:05Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'ksparking'
+app = 'ksmparking'
 primary_region = 'lax'
 
 [build]
