@@ -4,7 +4,7 @@ The contents of this project are not solely my own work. I have used many differ
 
 Update:
 After about 3 months of programming, I have reached my initial goal for this little project. 
-I decided to host the project on fly.io because of their cheap hosting if anyone wants to check it out, the link is: ksmpark.com
+I decided to host the project on fly.io because of their cheap hosting if anyone wants to check it out, the link is: ksmparking.fly.dev
 
 Update:
 After 1 week, my school formally released an email reinforcing rules related to parking on campus. 
