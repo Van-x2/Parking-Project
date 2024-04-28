@@ -22,10 +22,10 @@ import('pocketbase').then(({ default: PocketBase }) => {
     // Define API endpoint to handle database update
     app.post('/update-parking-spot', (req, res) => {
         // Extract data from request body
-        const { localId, localCol, localRow, localEmail, localVehicle, localUserData } = req.body;
+        const { localId, localCol, localRow, localEmail, localVehicle, localUserData} = req.body;
         const currentTime = new Date().getTime(); // Current time in milliseconds
         const delayInMs = 24 * 60 * 60 * 1000; // 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
-        //const delayInMs = 60 * 1000
+        //const delayInMs = 30 * 60 * 1000
         const targetTime = currentTime + delayInMs; // Target time after 24 hours
         const delayUntilTarget = targetTime - currentTime;
 
@@ -40,7 +40,8 @@ import('pocketbase').then(({ default: PocketBase }) => {
                 "email": localEmail,
                 "status": 3,
                 "orientstatus": 1,
-                "time": "2022-01-01 10:00:00.123Z"
+                "time": "2022-01-01 10:00:00.123Z",
+                "ownername": localUserData.name
               }
             const record = await pb.collection('parkingarray').update(localId, sendData);
             
@@ -53,10 +54,12 @@ import('pocketbase').then(({ default: PocketBase }) => {
                 "email": localEmail,
                 "status": 4,
                 "orientstatus": 1,
-                "time": "2022-01-01 10:00:00.123Z"
+                "time": "2022-01-01 10:00:00.123Z",
+                "ownername": localUserData.name
               }
             const record = await pb.collection('parkingarray').update(localId, sendData);
                 };
+                console.log('Updated Spot:' + localId)
               }
         async function resetLocalParkingSpot(){
             const pb = new PocketBase('https://parkingproject.pockethost.io');
@@ -66,10 +69,11 @@ import('pocketbase').then(({ default: PocketBase }) => {
                 "email": 'blank@ksbe.edu',
                 "status": 1,
                 "orientstatus": 1,
-                "time": "2022-01-01 10:00:00.123Z"
+                "time": "2022-01-01 10:00:00.123Z",
+                "ownername": ''
               }
             const record = await pb.collection('parkingarray').update(localId, sendData);
-            console.log('resettedSpot')
+            console.log('resettedSpot:' + localId)
         }
         async function addSpotOwning(){
             const pb = new PocketBase('https://parkingproject.pockethost.io');
@@ -95,7 +99,6 @@ import('pocketbase').then(({ default: PocketBase }) => {
         }
         takeLocalParkingSpot()
         addSpotOwning()
-        console.log('updatedSpot')
         setTimeout(resetLocalParkingSpot, delayUntilTarget);
         setTimeout(removeSpotOwning, delayUntilTarget);
         
@@ -117,4 +120,4 @@ import('pocketbase').then(({ default: PocketBase }) => {
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`App setup for${port}`) );
+app.listen(port, () => console.log(`24 Hour Wait setup`) );

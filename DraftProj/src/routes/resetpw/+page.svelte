@@ -1,17 +1,24 @@
 <script>
+    //sets email as null and imports pocketbase
     let email;
     import PocketBase from 'pocketbase'
 
 
-
+    //creates asyncronys function that, upon activation, will send the password reset email for the user
     async function sendResetPWEmail(){
+
+        //defines new pocketbase instance
         const pb = new PocketBase('https://parkingproject.pockethost.io');
+        //formats email
         let emailstring = email.toLowerCase()
 
+        //tries to send verification email using the formatted email
         try {
             await pb.collection('users').requestPasswordReset(emailstring);
             alert('Sent password reset link to: ' + emailstring)
         }
+        
+        //if the operation fails, then it gets the returned error, and console logs it
         catch(error) {
             console.log(error)
             alert('Failed to send password reset link, are you sure "'+ emailstring +'" is a valid email?')

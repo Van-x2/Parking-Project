@@ -1,10 +1,13 @@
 
 <script>
+  //creates some usefull variables used in tailwindcss, and the password reveal functions
   let margin = 0;
   let width = 65;
   let passwordReveal = 'password';
   let passwordConfirmReveal = 'password';
 
+
+  //functions used to toggle visibility of password
   function togglePassVis() {
       passwordReveal = (passwordReveal === 'password') ? 'text' : 'password';
   }
@@ -15,6 +18,8 @@
 
   // Function to validate email and prevent form submission if invalid
   async function handleFormSubmit(event) {
+
+      //gets values of forms and sets them to variables
       const email = (document.getElementById('email').value).toLowerCase()
       console.log(email)
       const password = document.getElementById('password').value;
@@ -28,17 +33,17 @@
       
       if (password.length < 8) {
           alert('Password must be at least 8 characters long.');
-          event.preventDefault();
+          event.preventDefault(); // Prevent form from submitting
           return;
       }
 
       if (password !== passwordConfirm) {
           alert('Passwords do not match.');
-          event.preventDefault();
+          event.preventDefault(); // Prevent form from submitting
           return;
       }
 
-      // If all validations pass
+      // If all validations pass then the form submits
       event.target.submit();
   }
 </script>
@@ -63,7 +68,7 @@
 <div class="mb-4 ml-2 relative w-[70%]">
   <label for="password"></label>
   <input id="password"  placeholder="Password" name="password" type={passwordReveal}  class="w-full block rounded-lg border dark:border-none  py-[9px] px-3 pr-10 text-sm focus:border-secondary focus:ring-2 focus:ring-secondary focus:outline-none transition-width ease-in-out hover:w-[105%] duration-200 focus:w-[105%]" />
-  <button type="button" class="absolute inset-y-0 right-0 px-2 focus:outline-none" on:mousedown={togglePassVis} on:mouseup={togglePassVis}>
+  <button type="button" class="absolute inset-y-0 right-0 px-2 focus:outline-none" on:mousedown={togglePassVis} on:mouseup={togglePassVis} on:click={togglePassVis}>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 fill-secondary transition active:fill-slate-500">
       <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
       <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clip-rule="evenodd" />
@@ -75,7 +80,7 @@
 <div class="mb-4 ml-2 relative w-[70%]">
   <label for="passwordConfirm"></label>
   <input  id="password2" placeholder="Confirm your password" name="passwordConfirm" type={passwordConfirmReveal}  class="w-full block rounded-lg border dark:border-none  py-[9px] px-3 pr-10 text-sm focus:border-secondary focus:ring-2 focus:ring-secondary focus:outline-none transition-width ease-in-out hover:w-[105%] duration-200 focus:w-[105%]" />
-  <button type="button" class="absolute inset-y-0 right-0 px-2 focus:outline-none" on:mousedown={togglePassConfirmVis} on:mouseup={togglePassConfirmVis}>
+  <button type="button" class="absolute inset-y-0 right-0 px-2 focus:outline-none" on:mousedown={togglePassConfirmVis} on:mouseup={togglePassConfirmVis} on:click={togglePassConfirmVis}>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6 fill-secondary transition active:fill-slate-500">
       <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
       <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clip-rule="evenodd" />

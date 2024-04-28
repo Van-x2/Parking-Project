@@ -1,14 +1,22 @@
+//+layout.server.js everytime you load a page, and the load function is used to pass returned data into the 'data' object
+
+//imports utility for serializing
 import { serializeNonPOJOs } from '$lib/utils';
+//imports PB
 import PocketBase from 'pocketbase'
+
+//sets up some usefull objects
 const parkData = {};
 let fullParkData = {};
 
-
+//defines load function that takes in the locals object
 export const load = async ({ locals }) => {
+
+    //creates new instance of PocketBase defined as pb
     const pb = new PocketBase('https://parkingproject.pockethost.io');
     
     
-
+    //attempts to make a PocketBase request to access every parking spot data entry, and sort them into the parkData object defined earlier
     try {
         fullParkData = await pb.collection('parkingarray').getList( 1, 255, {sort: 'id'});
 
@@ -25,13 +33,13 @@ export const load = async ({ locals }) => {
         parkData.k = fullParkData.items.slice(207, 228);
         parkData.l = fullParkData.items.slice(228, 255);
 
-
+    //if the request fails, get the 'error' data from the failure, and add it to a console log
     } catch (error) {
         console.error('Error fetching data:', error);
         datapullA = { error: "Error fetching data. Please check the console for details." };
     }
 
-
+    //if the user has the locals.user property (AKA signed in), it will return a 'data' object with the relvent data
     if (locals.user) {
         const record = await pb.collection('users').getOne(locals.user.id);
         record.email = locals.user.email
@@ -41,7 +49,7 @@ export const load = async ({ locals }) => {
         };
     }
 
-	
+	//same returning of data here, except if the user isnt signed in
 	else {
 		return {
 			parking: parkData
@@ -50,8 +58,3 @@ export const load = async ({ locals }) => {
 	
 
 };
-	/*
-	return {
-		parking: (currentArray)
-	}
-	*/

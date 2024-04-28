@@ -1,13 +1,16 @@
-// src/routes/update-parking-spot.js
+// Meant to define a route to backend server
 
+//importing
 import { post } from '@sveltejs/kit/http';
 import PocketBase from 'pocketbase';
 
+//sends POST request via the route with the given variables
 export const post = async (request) => {
     const { localId, localCol, localRow, email, vehicle } = request.body;
 
-    // Perform database update logic here
-    // Example: Update parking spot status to active
+
+
+//if it is succsessfull, it returs a 200 status, and returns the 'body' object with a key of success and a value of true
 
     return {
         status: 200,

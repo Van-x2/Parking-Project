@@ -1,13 +1,25 @@
 <script>
+    //imports utils for onMount and on Destroy
     import { onMount, onDestroy } from 'svelte';
+
+    //grabs data object from server-side
     export let data;
+
+    //defines map variable used in leaflet
     let map;
+
+    //imports svelte components 
     import Navbar from './Navbar.svelte'
     import SpaceGui from './SpaceGUI.svelte';
 
-  
+
+    //Activates function upon the client rendering the page
     onMount(() => {
+
+      //checks if the window is defined
       if (typeof window !== 'undefined') {
+
+        //imports leaflet dynamicly
         import('leaflet').then(L => {
 
         //sets some custom icons
@@ -49,7 +61,7 @@
                 popupAnchor: [-3, -76]
               });
         
-        //sets some helpfull variables
+        //defines some helpfull variables
         let center = [48,-73];
         let parkingImgURL = 'https://i.ibb.co/NxWs8Dh/Parking-Lots.png';
         const initialView = [55, -73];
@@ -63,28 +75,39 @@
         L.imageOverlay(parkingImgURL, imageBounds).addTo(map);
 
         //sets up some map properties
-        //map.setMaxBounds(zoomBounds);
         map.setMaxZoom(3)
         map.setMinZoom(3)
         map.removeControl(map.zoomControl);
 
-        //function to create markers
+        //creates a function to place ALL parking space markers
         function markerRowPlacer(rowLetter, maxColNum, startingPlace, placeChangeAmount, heightPlace) {
+
+                //defines variables used to index the markers properly
                 let colCount = 1;
                 let currentPlace = startingPlace;
-                let markers = []; // Array to store markers
 
+                //creates object to hold all the custom markers, so that they can be easily accessed later
+                let markers = []; 
+
+
+                //creates a looping function
                 while (colCount <= maxColNum) {
+
+                  //formats variables to be used while creating each marker
                   let curLetter = rowLetter;
                   let curNumber = colCount;
                   let curNumberString = colCount.toString(2);
                   let currentName = curLetter + curNumberString;
+
+                  //creates the data request setup dynamically based on current indexed info
                   let currentparkingRequest = ("data.parking." + (curLetter.toLowerCase()) + "[" + (curNumber -1) + "]")
 
                   // Create marker and add to the array
                   let currentMarker = L.marker([heightPlace, currentPlace], { icon: vacantIcon }).addTo(map);
 
+                  //defines the pop-up content for the current marker
                   var popupContent = document.createElement('div');
+                  //sets the popup content variable to the SpaceGUI component, whilst also sending the important properties for creating the popup content
                   var SpaceGUI = new SpaceGui({
                       target: popupContent,
                       props: {
@@ -93,21 +116,29 @@
                           localId: (eval(currentparkingRequest + ".id")),
                           localEmail: (eval(currentparkingRequest + ".email")),
                           localCol: (eval(currentparkingRequest + ".column")),
-                          localRow: (eval(currentparkingRequest + ".row"))
+                          localRow: (eval(currentparkingRequest + ".row")),
+                          localName: (eval(currentparkingRequest + ".ownername"))
                       }
                   });
 
-                  //Adds the Popup text to current marker (placeholder text for now)
+                  //adds the 'popupContent' object to the bindPopup property of the marker (That is holding the given SpaceGUI component for the given marker)
                   currentMarker.bindPopup(
                     popupContent
                   );
-                  //autoOpen Popup for development
-                  /*
-                  if ((eval(currentparkingRequest + ".id")) == "000000000000B06") {
-                    currentMarker.openPopup()
-                  }
-                  */
 
+                  //if the user is signed in, the marker with the current user's email will openup automaticly 
+                  if (data.profile) {
+                    if ((eval(currentparkingRequest + ".email")) == data.profile.email) {
+                    console.log(data.profile.email)
+                    currentMarker.openPopup()
+                    }
+                  }
+                  
+
+                  
+                  
+
+                  //handles icon orientation (so vehicles  display facing the correct directions automatically)                  
 
                   //Sets the Icon of the current marker
                   //status guide:1=vacant 2=unknown 3=car 4=truck
@@ -284,14 +315,10 @@
                   orientVehicle()
 
 
-                  //currentMarker.setIcon(carIconDown);
-
-
                   //Stores the Markers in an array
                   markers.push({ name: currentName, marker: currentMarker });
                   colCount++;
                   currentPlace += placeChangeAmount;
-
                 }
 
                 return markers; // Return the array of markers
@@ -300,7 +327,7 @@
               //sets the markersObject object
               var markersObject = {};
 
-              //calls function when needed
+              //calls the markers function all the times that are neccesary
               markersObject['A'] = markerRowPlacer("A", 20, -125.441, 4.237, 80.1);
               markersObject['B'] = markerRowPlacer("B", 18, -112.78, 4.237, 76.97);
               markersObject['C'] = markerRowPlacer("C", 18, -112.78, 4.237, 73.8);
@@ -313,19 +340,17 @@
               markersObject['J'] = markerRowPlacer("J", 21, -112.826, 4.237, -6.7);
               markersObject['K'] = markerRowPlacer("K", 21, -112.826, 4.237, -18.8);
               markersObject['L'] = markerRowPlacer("L", 27, -121.35, 4.237, -33.5);
-              
-              //markersObject['A'][19].marker.setIcon(carIconDown);
-
-
+  
 
         
-
+        //console logs any errors that happen
         }).catch(error => {
           console.error('Failed to load Leaflet', error);
         });
       }
     });
-  
+    
+    //when the leaaflet component is destroyed, the map will be removed, if it exists
     onDestroy(() => {
       if (map) {
         map.remove();
@@ -336,4 +361,3 @@
 
   
   <div id="map" class="w-full h-full "></div>
-  

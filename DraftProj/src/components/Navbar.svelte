@@ -1,4 +1,5 @@
 <script>
+    //defines vars used in tailwind
     let iconSize = '0px';
     let iconMargin = '0px';
     let iconPadding = '0px';

@@ -1,4 +1,5 @@
 <script>
+    //imports utilites, pocketbase, and needed variables from the leaflet component, given in each instance of the marker
     import PocketBase from 'pocketbase';
     import { error, redirect } from '@sveltejs/kit';
     export let data;
@@ -7,21 +8,25 @@
     export let localEmail;
     export let localCol;
     export let localRow;
+    export let localName;
     let vehicleImg;
     let sendData;
     let sendStatus;
 
-
+    //sends relevant data to the backend server for altering database
     async function backendDataPOST(){
+
+      //forms variables into a handlable object of 'requestData'
       const requestData = {
             localId: localId,
             localCol: localCol,
             localRow: localRow,
             localEmail: data.profile.email,
             localVehicle: data.profile.vehicle,
-            localUserData: data.profile
+            localUserData: data.profile,
         };
-      
+        
+        //sends 'requestData' object to backend server using POST method
         const response = await fetch('https://parkingprojectbackend.fly.dev/update-parking-spot', {
                 method: 'POST',
                 headers: {
@@ -29,9 +34,10 @@
                 },
                 body: JSON.stringify(requestData)
     })
-    location.reload();
+      document.reload()
     }
 
+    //depending on the status of the given marker and thus parking spot, update the vehicle image
     if (localStatus == 1) {
       vehicleImg = "https://i.ibb.co/XF8cSD4/Vacant2.png"}
     if (localStatus == 2) {
@@ -41,6 +47,8 @@
     if (localStatus == 4) {
       vehicleImg = "https://i.ibb.co/pL1WBBV/Truckup.png"}
 
+
+    //simple utility function to shorten the overly long ID's used to identify pocketbase data entries
     function simplifyID(id) {
     // Remove leading zeros
     id = id.replace(/^0+/, '');
@@ -56,7 +64,8 @@
     return letterPart + numberPart;
 }
   
-function toClipboard(str) {
+    //copies the current parking space's email to the current users email, for easy contacting 
+    function toClipboard(str) {
   navigator.clipboard.writeText(str);
   alert("Copied occupant's Email address to clipboard")
 }
@@ -108,10 +117,13 @@ function toClipboard(str) {
         <span class="mt-1">
           This spot is occupied by:
         </span>
-        <span class="text-[11px]">
-          {localEmail}
-        </span>
-        <button on:click={toClipboard(localEmail)} class=" bg-secondary text-white p-2 px-4 border-white border-4 rounded-lg align-bottom mt-[70px] translate-x-1 transition hover:border-yellow-200 active:bg-blue-900"> Contact Occupant </button>
+        <div class=" mt-2">
+          <span class="text-[15px] font-serif m-1">
+            {localName}
+          </span>
+        </div>
+
+        <button on:click={toClipboard(localEmail)} class=" bg-secondary text-white p-2 px-4 border-white border-4 rounded-lg align-bottom mt-[70px] translate-x-1 translate-y-[-7px] transition hover:border-yellow-200 active:bg-blue-900"> Contact Occupant </button>
       </div>
     </div>
   </div>
@@ -181,10 +193,12 @@ function toClipboard(str) {
         <span class="mt-1">
           This spot is occupied by:
         </span>
-        <span class="text-[11px]">
-          {localEmail}
-        </span>
-        <button on:click={toClipboard(localEmail)} class=" bg-secondary text-white p-2 px-4 border-white border-4 rounded-lg align-bottom mt-[70px] translate-x-1 transition hover:border-yellow-200 active:bg-blue-900"> Contact Occupant </button>
+        <div class=" mt-2">
+          <span class="text-[15px] font-serif m-1">
+            {localName}
+          </span>
+        </div>
+        <button on:click={toClipboard(localEmail)} class=" bg-secondary text-white p-2 px-4 border-white border-4 rounded-lg align-bottom mt-[70px] translate-x-1 translate-y-[-7px] transition hover:border-yellow-200 active:bg-blue-900"> Contact Occupant </button>
       </div>
     </div>
   </div>

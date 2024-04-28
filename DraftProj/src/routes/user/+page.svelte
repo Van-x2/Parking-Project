@@ -1,4 +1,5 @@
 <script>
+    //imports navbar and also imports the 'data' object that was created in the +layout.server.js
     import Navbar from '../../components/Navbar.svelte';
     export let data;
 </script>

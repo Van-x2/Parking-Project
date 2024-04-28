@@ -1,8 +1,9 @@
 <script>
+    //defines email variable without a value, imports pocketbase variable
     let email;
     import PocketBase from 'pocketbase'
 
-
+    //creates a asyncronys function that, upon activation, sends out a request to Pocketbase to release a verification email
     async function sendVerifyEmail(){
         let emailstring = email.toLowerCase()
         const pb = new PocketBase('https://parkingproject.pockethost.io');
@@ -11,6 +12,7 @@
             await pb.collection('users').requestVerification(emailstring);
             alert('Sent verification email to: ' + emailstring)
         }
+        //if it fails, then the error is returned back to the function, it then console logs the error
         catch(error) {
             console.log(error)
             alert('Failed to send verification email to: '+ emailstring)

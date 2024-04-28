@@ -1,10 +1,11 @@
 <script>
+  //importing
   import Main from '../components/Main.svelte'
   import Navbar from '../components/Navbar.svelte'
   export let data;
 </script>
 
-
+  
   <div class="w-full h-full grid justify-items-center">
 
     <div class="w-full h-full z-0">
@@ -22,6 +23,7 @@
 
       </div>
     </div>
+    
     {:else}
 
     {#if data.profile.owningspot == true}
@@ -37,6 +39,8 @@
       </div>
     </div>
 
+    
+    
     {/if}
 
     {/if}
