@@ -12,5 +12,5 @@ On top of this, they also added a new rule stating that there can be no external
 
 Guess it was fun while it lasted!
 
-Inline-style: 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+![alt text](https://i.ibb.co/16nWZKC/parkingwebsiteimg.jpg "Website Image")
