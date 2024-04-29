@@ -33,8 +33,8 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(requestData)
-    })
-      document.reload()
+      })
+      location.reload;
     }
 
     //depending on the status of the given marker and thus parking spot, update the vehicle image
