@@ -7,6 +7,6 @@
         <br>
     </div>
     <h2 class="text-secondary text-[20px] m-[3%]">
-        Nothing here for now...
+        No activity to track at the moment.
     </h2>
 </div>

@@ -34,7 +34,7 @@
                 },
                 body: JSON.stringify(requestData)
       })
-      location.reload;
+      location.reload()
     }
 
     //depending on the status of the given marker and thus parking spot, update the vehicle image
@@ -83,7 +83,7 @@
   <div class="  w-[308px] h-[200px] border-4 rounded-lg border-secondary text-center text-gray-300 p-2 flex">
     <div class=" left-0  w-[28%] h-[98%] translate-y-0 translate-x-0">
       <span class=" text-3xl font-serif font-bold">{(simplifyID(localId))}</span>
-      <img src="{vehicleImg}" alt="The current occupation of the space" class="w-[90%] h-[80%] translate-x-[3px]"/>
+      <img src="{vehicleImg}"   class="w-[90%] h-[80%] translate-x-[3px]"/>
     </div>
 
     <div class=" bg-primary right-0  w-[65%] h-[98%] translate-y-1 translate-x-4 rounded-lg text-secondary">
@@ -109,7 +109,7 @@
   <div class="  w-[308px] h-[200px] border-4 rounded-lg border-secondary text-center text-secondary p-2 flex">
     <div class=" left-0  w-[28%] h-[98%] translate-y-0 translate-x-0">
       <span class=" text-3xl font-serif font-bold">{(simplifyID(localId))}</span>
-      <img src="{vehicleImg}" alt="The current occupation of the space" class="w-[90%] h-[80%] translate-x-[3px]"/>
+      <img src="{vehicleImg}"   class="w-[90%] h-[80%] translate-x-[3px]"/>
     </div>
 
     <div class=" bg-primary right-0  w-[65%] h-[98%] translate-y-1 translate-x-4 rounded-lg text-secondary">
@@ -138,7 +138,7 @@
   <div class="  w-[308px] h-[200px] border-4 rounded-lg border-secondary text-center text-gray-300 p-2 flex">
     <div class=" left-0  w-[28%] h-[98%] translate-y-0 translate-x-0">
       <span class=" text-3xl font-serif font-bold">{(simplifyID(localId))}</span>
-      <img src="{vehicleImg}" alt="The current occupation of the space" class="w-[90%] h-[80%] translate-x-[3px]"/>
+      <img src="{vehicleImg}"   class="w-[90%] h-[80%] translate-x-[3px]"/>
     </div>
 
     <div class=" bg-primary right-0  w-[65%] h-[98%] translate-y-1 translate-x-4 rounded-lg text-secondary">
@@ -163,7 +163,7 @@
   <div class="  w-[308px] h-[200px] border-4 rounded-lg border-secondary text-center text-gray-300 p-2 flex">
     <div class=" left-0  w-[28%] h-[98%] translate-y-0 translate-x-0">
       <span class=" text-3xl font-serif font-bold">{(simplifyID(localId))}</span>
-      <img src="{vehicleImg}" alt="The current occupation of the space" class="w-[90%] h-[80%] translate-x-[3px]"/>
+      <img src="{vehicleImg}"   class="w-[90%] h-[80%] translate-x-[3px]"/>
     </div>
 
     <div class=" bg-primary right-0  w-[65%] h-[98%] translate-y-1 translate-x-4 rounded-lg text-secondary">
@@ -185,7 +185,7 @@
   <div class="  w-[308px] h-[200px] border-4 rounded-lg border-secondary text-center text-secondary p-2 flex">
     <div class=" left-0  w-[28%] h-[98%] translate-y-0 translate-x-0">
       <span class=" text-3xl font-serif font-bold">{(simplifyID(localId))}</span>
-      <img src="{vehicleImg}" alt="The current occupation of the space" class="w-[90%] h-[80%] translate-x-[3px]"/>
+      <img src="{vehicleImg}"   class="w-[90%] h-[80%] translate-x-[3px]"/>
     </div>
 
     <div class=" bg-primary right-0  w-[65%] h-[98%] translate-y-1 translate-x-4 rounded-lg text-secondary">
