@@ -34,7 +34,9 @@
                 },
                 body: JSON.stringify(requestData)
       })
-      location.reload()
+        setTimeout(()=>{
+            location.reload()
+        },1000)
     }
 
     //depending on the status of the given marker and thus parking spot, update the vehicle image
